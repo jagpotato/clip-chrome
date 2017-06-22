@@ -1,6 +1,6 @@
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   if (request == "Action") {
-    settop();
+    getTabInfo();
   }
 });
 
@@ -9,5 +9,15 @@ function func() {
 }
 
 function settop() {
-  chrome.app.window.get("main-view").setAlwaysOnTop(true);
+  chrome.app.window.current().setAlwaysOnTop(true);
+}
+
+function getTabInfo() {
+  chrome.tabs.query(null, function(tab) {
+    console.log(tab);
+  });
+
+  // chrome.windows.getCurrent(function(currentWindow) {
+  //   console.log(currentWindow);
+  // });
 }
